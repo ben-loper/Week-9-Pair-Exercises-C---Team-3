@@ -8,13 +8,23 @@
     <link rel="stylesheet" href="~/css/park-detail.css" />
 }
 
-<h2>ParkDetail</h2>
+<div class="park-details-page">
 
-<div class="parks-details">
+    <div class="park-img-tile">
+        <img src="~/images/parks/@(Model.Park.Code).jpg" class="park-img" />
+    </div>
 
-    <img src="~/images/parks/@(Model.Park.Code).jpg" />
-    <h3>@Model.Park.Name</h3>
-    <p>@Model.Park.Description</p>
+    <div class="park-details">
+        <p>@Model.Park.Acreage</p>
+    </div>
+
+    <div class="park-title">
+        <h3>@Model.Park.Name</h3>
+    </div>
+
+    <div class="park-description">
+        <p>@Model.Park.Description</p>
+    </div>
 
 </div>
 

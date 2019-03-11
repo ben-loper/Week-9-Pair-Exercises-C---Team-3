@@ -1,2 +1,21 @@
-﻿body {
+﻿.park-details-page {
+    display: grid;
+    grid-template-columns: minmax(272.5px, 33%) minmax(272.5px, 25%) 33%;
+    grid-template-areas: "park-img-tile park-img-tile park-details" "park-title park-title ." "park-description park-description park-description" "today-forecast future-forecast future-forecast"
+}
+
+.park-details .park-img {
+    width: 100%;    
+}
+
+.park-img-tile {
+    grid-area: park-img-tile;
+}
+
+.park-title {
+    grid-area: park-title;
+}
+
+.park-description {
+    grid-area: park-description;
 }
