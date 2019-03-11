@@ -9,8 +9,6 @@ namespace Capstone.Web.Database
 {
     public class NationalParkDbDal : INationalParkDal
     {
-        ParkModel park = new ParkModel();
-
         private string _connectionString;
 
         public NationalParkDbDal(string connectionString)
@@ -21,6 +19,7 @@ namespace Capstone.Web.Database
         public ParkModel GetParkDetailsByCode(string parkCode)
         {
             string getParksSql = "SELECT * FROM park WHERE parkCode = @parkCode";
+            ParkModel park = new ParkModel();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -33,8 +32,6 @@ namespace Capstone.Web.Database
 
                 while (reader.Read())
                 {
-                    ParkModel park = new ParkModel();
-
                     park.Code = Convert.ToString(reader["parkCode"]);
                     park.Name = Convert.ToString(reader["parkName"]);
                     park.State = Convert.ToString(reader["state"]);
@@ -52,8 +49,6 @@ namespace Capstone.Web.Database
                     park.NumOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
                 }
             }
-
-
             return park;
         }
 
@@ -84,6 +79,34 @@ namespace Capstone.Web.Database
 
 
             return parks;
+        }
+
+        public List<WeatherModel> GetWeatherForecast(string parkCode)
+        {
+            List<WeatherModel> forecast = new List<WeatherModel>();
+
+            string getForecastSql = "SELECT fiveDayForecastValue, low, high," +
+                " forecast FROM weather WHERE parkCode = 'CVNP';";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(getForecastSql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    WeatherModel dayForecast = new WeatherModel();
+
+                    dayForecast.ForecastValue = Convert.ToInt32(reader["fiveDayForecastValue"]);
+                    dayForecast.TempLow = Convert.ToInt32(reader["low"]);
+                    dayForecast.TempLow = Convert.ToInt32(reader["high"]);
+                    dayForecast.Forecast = Convert.ToString(reader["forecast"]);
+
+                    forecast.Add(dayForecast);
+                }
+            }
+            return forecast;
         }
     }
 }

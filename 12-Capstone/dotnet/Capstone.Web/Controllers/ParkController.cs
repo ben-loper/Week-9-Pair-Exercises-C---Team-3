@@ -26,9 +26,10 @@ namespace Capstone.Web.Controllers
 
         public IActionResult ParkDetails(string parkCode)
         {
-            ParkModel park = _nationParkDal.GetParkDetailsByCode(parkCode);
-
-            return View(park);
+            ParkDetailViewModel model = new ParkDetailViewModel();
+            model.Park = _nationParkDal.GetParkDetailsByCode(parkCode);
+            model.WeatherForecast = _nationParkDal.GetWeatherForecast(parkCode);
+            return View(model);
         }
     }
 }

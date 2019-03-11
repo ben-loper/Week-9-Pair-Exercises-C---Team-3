@@ -11,5 +11,7 @@ namespace Capstone.Web.Database
         List<IndexViewParkModel> GetParks();
 
         ParkModel GetParkDetailsByCode(string parkCode);
+
+        List<WeatherModel> GetWeatherForecast(string parkCode);
     }
 }

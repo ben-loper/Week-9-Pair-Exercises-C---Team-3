@@ -1,0 +1,21 @@
+﻿@model ParkDetailViewModel
+
+@section Title 
+{
+    ParkDetails
+}
+@section StyleSheet {
+    <link rel="stylesheet" href="~/css/park-detail.css" />
+}
+
+<h2>ParkDetail</h2>
+
+<div class="parks-details">
+
+    <img src="~/images/parks/@(Model.Park.Code).jpg" />
+    <h3>@Model.Park.Name</h3>
+    <p>@Model.Park.Description</p>
+
+</div>
+
+
