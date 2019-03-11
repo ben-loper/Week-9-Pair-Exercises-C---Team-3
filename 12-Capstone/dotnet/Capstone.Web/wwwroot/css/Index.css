@@ -1,0 +1,17 @@
+﻿
+.parks-listing {
+    display: grid;
+    justify-items: start;
+    grid-template-columns: 30% minmax(740px, 65%);
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    min-width: 940px;
+}
+
+.parks-listing h3 {
+    margin-top: 0;
+}
+
+.parks-listing img {
+    width: 300px;
+}

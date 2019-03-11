@@ -1,10 +1,21 @@
 ﻿@model List<ParkModel>
 
-@{
-    ViewData["Title"] = "Home Page";
+@section Title{
+    Index
 }
 
-@foreach(ParkModel park in Model)
-{
-    <p>@park.Name</p>
+@section StyleSheet {
+    <link rel="stylesheet" href="~/css/Index.css" />
 }
+
+<div class="parks-listing">
+    @foreach (ParkModel park in Model)
+    {   
+      <img src="~/images/parks/@(park.Code).jpg" /> 
+      
+      <div>
+          <h3>@park.Name</h3>
+          <p>@park.Description</p>
+      </div>
+    }
+</div>
