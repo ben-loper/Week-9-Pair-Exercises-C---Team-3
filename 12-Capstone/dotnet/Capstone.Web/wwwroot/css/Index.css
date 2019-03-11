@@ -1,7 +1,6 @@
 ﻿
 .parks-listing {
-    display: grid;
-    justify-items: start;
+    display: grid;   
     grid-template-columns: 30% minmax(740px, 65%);
     grid-column-gap: 40px;
     grid-row-gap: 20px;
@@ -14,4 +13,5 @@
 
 .parks-listing img {
     width: 300px;
+    border-radius: 5px;
 }

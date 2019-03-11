@@ -1,4 +1,4 @@
-﻿@model List<ParkModel>
+﻿@model List<IndexViewParkModel>
 
 @section Title{
     Index
@@ -9,13 +9,14 @@
 }
 
 <div class="parks-listing">
-    @foreach (ParkModel park in Model)
+    @foreach (IndexViewParkModel park in Model)
     {   
-      <img src="~/images/parks/@(park.Code).jpg" /> 
-      
-      <div>
-          <h3>@park.Name</h3>
-          <p>@park.Description</p>
-      </div>
-    }
+    <a asp-action="ParkDetails" asp-controller="Park" asp-route-ParkCode=@park.Code>
+        <img src="~/images/parks/@(park.Code).jpg" /></a>
+
+    <div>
+        <a asp-action="ParkDetails" asp-controller="Park" asp-route-ParkCode=@park.Code><h3>@park.Name</h3></a>
+        <p>@park.Description</p>
+    </div>
+        }
 </div>

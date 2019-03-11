@@ -8,6 +8,8 @@ namespace Capstone.Web.Database
 {
     public interface INationalParkDal
     {
-        List<ParkModel> GetParks();
+        List<IndexViewParkModel> GetParks();
+
+        ParkModel GetParkDetailsByCode(string parkCode);
     }
 }

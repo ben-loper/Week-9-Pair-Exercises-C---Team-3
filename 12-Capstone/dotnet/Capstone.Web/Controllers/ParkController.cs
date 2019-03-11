@@ -19,9 +19,16 @@ namespace Capstone.Web.Controllers
 
         public IActionResult Index()
         {
-            List<ParkModel> parks = _nationParkDal.GetParks();
+            List<IndexViewParkModel> parks = _nationParkDal.GetParks();
 
             return View(parks);
+        }
+
+        public IActionResult ParkDetails(string parkCode)
+        {
+            ParkModel park = _nationParkDal.GetParkDetailsByCode(parkCode);
+
+            return View(park);
         }
     }
 }

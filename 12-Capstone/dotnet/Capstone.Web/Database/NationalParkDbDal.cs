@@ -9,6 +9,8 @@ namespace Capstone.Web.Database
 {
     public class NationalParkDbDal : INationalParkDal
     {
+        ParkModel park = new ParkModel();
+
         private string _connectionString;
 
         public NationalParkDbDal(string connectionString)
@@ -16,16 +18,17 @@ namespace Capstone.Web.Database
             _connectionString = connectionString;
         }
 
-        public List<ParkModel> GetParks()
+        public ParkModel GetParkDetailsByCode(string parkCode)
         {
-            List<ParkModel> parks = new List<ParkModel>();
-
-            string getParksSql = "SELECT * FROM park";
+            string getParksSql = "SELECT * FROM park WHERE parkCode = @parkCode";
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(getParksSql, conn);
+
+                cmd.Parameters.AddWithValue("@parkCode", parkCode);
+
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -47,6 +50,33 @@ namespace Capstone.Web.Database
                     park.Description = Convert.ToString(reader["parkDescription"]);
                     park.EntryFee = Convert.ToDecimal(reader["entryFee"]);
                     park.NumOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
+                }
+            }
+
+
+            return park;
+        }
+
+        public List<IndexViewParkModel> GetParks()
+        {
+            List<IndexViewParkModel> parks = new List<IndexViewParkModel>();
+
+            string getParksSql = "SELECT parkCode, parkName, state, parkDescription FROM park";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(getParksSql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    IndexViewParkModel park = new IndexViewParkModel();
+
+                    park.Code = Convert.ToString(reader["parkCode"]);
+                    park.Name = Convert.ToString(reader["parkName"]);
+                    park.State = Convert.ToString(reader["state"]);
+                    park.Description = Convert.ToString(reader["parkDescription"]);
 
                     parks.Add(park);
                 }

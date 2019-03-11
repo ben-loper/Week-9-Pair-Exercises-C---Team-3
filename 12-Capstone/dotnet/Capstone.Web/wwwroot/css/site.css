@@ -5,6 +5,10 @@ body {
     padding-bottom: 20px;
 }
 
+li a:link {
+    font-size: 20px;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
