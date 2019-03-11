@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capstone.Web.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,10 @@ namespace Capstone.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            // CONFIGURE THE APPLICATION DEPENDENCIES
+            services.AddScoped<INationalParkDal, NationalParkDbDal>(j => new NationalParkDbDal(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -53,7 +58,7 @@ namespace Capstone.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Park}/{action=Index}/{id?}");
             });
         }
     }

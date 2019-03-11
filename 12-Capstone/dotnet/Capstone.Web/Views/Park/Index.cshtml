@@ -1,0 +1,10 @@
+﻿@model List<ParkModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@foreach(ParkModel park in Model)
+{
+    <p>@park.Name</p>
+}
