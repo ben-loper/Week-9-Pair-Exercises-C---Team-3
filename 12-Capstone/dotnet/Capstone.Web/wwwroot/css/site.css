@@ -9,6 +9,10 @@ li a:link {
     font-size: 20px;
 }
 
+.navbar-collapse.collapse {
+    margin-left: 6%;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -17,11 +21,12 @@ li a:link {
 }
 
 .container.body-content {
-    margin-left: 25px;
+    margin: auto;
 }
 
 .logo-header img {
     width: 400px;
+    margin-left: 4%;
 }
 
 .navbar .container {

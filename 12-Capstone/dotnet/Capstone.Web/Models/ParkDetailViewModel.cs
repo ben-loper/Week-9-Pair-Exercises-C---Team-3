@@ -9,5 +9,6 @@ namespace Capstone.Web.Models
     {
         public ParkModel Park { get; set; }
         public List<WeatherModel> WeatherForecast { get; set; }
+        
     }
 }
