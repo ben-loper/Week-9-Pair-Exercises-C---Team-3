@@ -1,7 +1,10 @@
 ﻿.park-details-page {
     display: grid;
     grid-template-columns: minmax(272.5px, 33%) minmax(272.5px, 25%) 33%;
-    grid-template-areas: "park-img-tile park-img-tile park-details" "park-title park-title ." "park-description park-description park-description" "today-forecast future-forecast future-forecast"
+    grid-template-areas:    "park-img-tile park-img-tile park-details" 
+                            "park-title park-title ." 
+                            "park-description park-description park-description" 
+                            "today-forecast future-forecast future-forecast"
 }
 
 .park-details .park-img {
@@ -19,3 +22,39 @@
 .park-description {
     grid-area: park-description;
 }
+
+.today-forecast {
+    grid-area: today-forecast;
+    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-areas:    "img-and-title img-and-title"
+                            "high-temp-column low-temp-column"
+                            "weather-advice weather-advice"
+}
+
+
+.img-and-title {
+    grid-area: img-and-title;
+    text-align: center;
+}
+
+.img-and-title img {
+    width: 200px;
+}
+
+.high-temp-column {
+    grid-area: high-temp-column;
+}
+
+
+.future-forecast {
+    grid-area: future-forecast;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.future-forecast img {
+    width: 100px;
+}
+

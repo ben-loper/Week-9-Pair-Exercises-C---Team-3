@@ -27,9 +27,31 @@
     </div>
 
     <div class="today-forecast">
-        <p>@Model.WeatherForecast[0]</p>
-       
+        <div class="img-and-title">
+            <h3>Today</h3>
+            <img src="~/images/weather/@(Model.WeatherForecast[0].Forecast).png" />
+            <p>@Model.WeatherForecast[0].Forecast</p>
+        </div>
+        <div class="high-temp-column">
+            <h4>High</h4>
+            <p>@Model.WeatherForecast[0].TempHigh</p>
+        </div>
+        <div class="low-temp-column">
+
+        </div>
     </div>
+
+    <div class="future-forecast">
+
+        @for (int i = 1; i < Model.WeatherForecast.Count; i++)
+        {
+        <div>
+            <img src="~/images/weather/@(Model.WeatherForecast[i].Forecast).png" />
+            <p>@Model.WeatherForecast[i].Forecast</p>
+        </div>
+         }
+            
+        </div>
 
 </div>
 
