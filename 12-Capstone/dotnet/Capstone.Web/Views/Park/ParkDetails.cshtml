@@ -15,7 +15,18 @@
     </div>
 
     <div class="park-details">
-        <p>@Model.Park.Acreage</p>
+        <p><span>State: </span>@Model.Park.State</p>
+        <p><span>Acreage: </span>@Model.Park.Acreage</p>
+        <p><span>Elevation: </span>@Model.Park.ElevationInFeet Ft.</p>
+        <p><span>Miles of Trail: </span>@Model.Park.MilesOfTrails</p>
+        <p><span>Number of Campsites: </span>@Model.Park.NumOfCampsites</p>
+        <p><span>Climate: </span>@Model.Park.Climate</p>
+        <p><span>Year Founded: </span>@Model.Park.YearFounded</p>
+        <p><span>Anual Visitor Count: </span>@Model.Park.AnnualVisitorCount</p>
+        <p><span>Inspirational Quote: </span>@Model.Park.InspirationalQuote</p>
+        <p><span>Inspiration Quote Source: </span>@Model.Park.InspirationalQuoteSource</p>
+        <p><span>Entry Fee: </span>@Model.Park.EntryFee</p>
+        <p><span>Number of Animal Species: </span>@Model.Park.NumOfAnimalSpecies</p>
     </div>
 
     <div class="park-title">
@@ -30,14 +41,14 @@
         <div class="img-and-title">
             <h3>Today</h3>
             <img src="~/images/weather/@(Model.WeatherForecast[0].Forecast).png" />
-            <p>@Model.WeatherForecast[0].Forecast</p>
         </div>
         <div class="high-temp-column">
             <h4>High</h4>
-            <p>@Model.WeatherForecast[0].TempHigh</p>
+            <p class="temp">@Model.WeatherForecast[0].TempHigh F</p>
         </div>
         <div class="low-temp-column">
-
+            <h4>Low</h4>
+            <p class="temp">@Model.WeatherForecast[0].TempLow F</p>
         </div>
     </div>
 
@@ -45,12 +56,19 @@
 
         @for (int i = 1; i < Model.WeatherForecast.Count; i++)
         {
-        <div>
-            <img src="~/images/weather/@(Model.WeatherForecast[i].Forecast).png" />
-            <p>@Model.WeatherForecast[i].Forecast</p>
+        <div class="day-forecast-tile">
+            <img src="~/images/weather/@(Model.WeatherForecast[i].Forecast).png" class="weather-img" />
+            <div class="future-high-temp-forecast">
+                <h4>High</h4>
+                <p class="temp">@Model.WeatherForecast[i].TempHigh F</p>
+            </div>
+            <div class="future-low-temp-forecast">
+                <h4>Low</h4>
+                <p class="temp">@Model.WeatherForecast[i].TempLow F</p>
+            </div>
         </div>
-         }
-            
+        }
+
         </div>
 
 </div>

@@ -100,7 +100,7 @@ namespace Capstone.Web.Database
 
                     dayForecast.ForecastValue = Convert.ToInt32(reader["fiveDayForecastValue"]);
                     dayForecast.TempLow = Convert.ToInt32(reader["low"]);
-                    dayForecast.TempLow = Convert.ToInt32(reader["high"]);
+                    dayForecast.TempHigh = Convert.ToInt32(reader["high"]);
                     dayForecast.Forecast = Convert.ToString(reader["forecast"]);
 
                     forecast.Add(dayForecast);

@@ -1,6 +1,6 @@
 ﻿.park-details-page {
     display: grid;
-    grid-template-columns: minmax(272.5px, 33%) minmax(272.5px, 25%) 33%;
+    grid-template-columns: 272.5px 272.5px 50%;
     grid-template-areas:    "park-img-tile park-img-tile park-details" 
                             "park-title park-title ." 
                             "park-description park-description park-description" 
@@ -30,9 +30,13 @@
     grid-template-columns: 100px 100px;
     grid-template-areas:    "img-and-title img-and-title"
                             "high-temp-column low-temp-column"
-                            "weather-advice weather-advice"
+                            "weather-advice weather-advice";
 }
 
+
+.today-forecast p {
+    width: 40px;
+}
 
 .img-and-title {
     grid-area: img-and-title;
@@ -45,16 +49,63 @@
 
 .high-temp-column {
     grid-area: high-temp-column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.low-temp-column {
+    grid-area: low-temp-column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.temp {
+    margin: 0px;
+    width: 30px;
+    padding-left: 5px;
+    border: 1px black solid;
 }
 
 
 .future-forecast {
     grid-area: future-forecast;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    justify-items: center;
+    text-align: center;
+    grid-template-columns: 20% 20% 20% 20%;
+    align-items: center;
 }
 
 .future-forecast img {
     width: 100px;
 }
+
+.day-forecast-tile {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "weather-img" "future-high-temp-column" "future-low-temp-column";
+}
+
+.future-high-temp-forecast {
+    grid-area: future-high-temp-column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.future-low-temp-forecast {
+    grid-area: future-low-temp-column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.day-forecast-tile p {
+    padding-left: 0;
+    width: 40px;
+}
+
+
 
