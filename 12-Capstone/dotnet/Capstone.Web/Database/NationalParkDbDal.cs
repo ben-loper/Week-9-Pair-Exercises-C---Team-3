@@ -81,6 +81,54 @@ namespace Capstone.Web.Database
             return parks;
         }
 
+        public Dictionary<string, string> GetParksCodesAndNames()
+        {
+            Dictionary<string, string> results = new Dictionary<string, string>();
+
+            string getParksSql = "SELECT parkCode, parkName FROM park";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(getParksSql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                   results.Add(Convert.ToString(reader["parkCode"]), Convert.ToString(reader["parkName"]));
+                }
+            }
+
+            return results;
+        }
+
+        public List<SurveyResultsViewModel> GetTopSurveyResults()
+        {
+            List<SurveyResultsViewModel> parks = new List<SurveyResultsViewModel>();
+
+            string getParksSql = "SELECT COUNT(park.parkCode) AS numberOfVotes, parkName, parkDescription FROM park JOIN survey_result ON park.parkCode = survey_result.parkCode GROUP BY park.parkName, parkDescription ORDER BY numberOfVotes DESC, parkName; ";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(getParksSql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    SurveyResultsViewModel park = new SurveyResultsViewModel();
+
+                    park.Name = Convert.ToString(reader["parkName"]);
+                    park.Description = Convert.ToString(reader["parkDescription"]);
+
+                    parks.Add(park);
+                }
+            }
+
+
+            return parks;
+        }
+
         public List<WeatherModel> GetWeatherForecast(string parkCode)
         {
             List<WeatherModel> forecast = new List<WeatherModel>();
@@ -107,6 +155,28 @@ namespace Capstone.Web.Database
                 }
             }
             return forecast;
+        }
+
+        public int SaveSurvey(Survey survey)
+        {
+            int result = 0;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES(@parkCode, @emailAddress, @state, @activityLevel);", conn);
+                cmd.Parameters.AddWithValue("@parkCode", survey.ParkCode);
+                cmd.Parameters.AddWithValue("@emailAddress", survey.EmailAddress);
+                cmd.Parameters.AddWithValue("@state", survey.StateOfResidence);
+                cmd.Parameters.AddWithValue("@activityLevel", survey.ActivityLevel);
+
+                if (cmd.ExecuteNonQuery() == 0)
+                {
+                    throw new Exception("Failed!!!!!!!!!!");
+                }
+            }
+
+            return result;
         }
     }
 }

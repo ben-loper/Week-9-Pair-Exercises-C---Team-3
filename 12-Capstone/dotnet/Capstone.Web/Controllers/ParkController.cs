@@ -41,6 +41,51 @@ namespace Capstone.Web.Controllers
             return View("ParkDetails", model);
         }
 
+        [HttpGet]
+        public IActionResult Survey()
+        {
+            Survey survey = new Survey();
+
+            NewSurveyViewModel model = new NewSurveyViewModel();
+
+            model.NewSurvey = survey;
+
+            model.ParkNameDict = _nationParkDal.GetParksCodesAndNames();
+
+            model.PopulateDropDown();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Survey(NewSurveyViewModel model)
+        {
+            // Call the method on the DAL to save the survey
+            Survey survey = new Survey();
+
+            survey.ActivityLevel = model.NewSurvey.ActivityLevel;
+
+            survey.EmailAddress = model.NewSurvey.EmailAddress;
+
+            survey.ParkCode = model.NewSurvey.ParkCode;
+
+            survey.StateOfResidence = model.NewSurvey.StateOfResidence;
+
+            _nationParkDal.SaveSurvey(survey);
+            //Redirect to the survey results page
+            
+            return RedirectToAction("SurveyResults");
+        }
+
+        public IActionResult SurveyResults()
+        {
+            // Find out which parks has the most favorites
+            List<SurveyResultsViewModel> model = _nationParkDal.GetTopSurveyResults();
+            //Pass to view
+
+            return View(model);
+        }
+
         private User GetActiveUser()
         {
             User user = null;

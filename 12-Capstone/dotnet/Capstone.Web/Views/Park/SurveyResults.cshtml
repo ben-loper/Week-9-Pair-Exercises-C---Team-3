@@ -1,0 +1,17 @@
+﻿@model List<SurveyResultsViewModel>
+
+@section Title {
+    Survey Results
+}
+
+@{
+    ViewData["Title"] = "SurveyResults";
+}
+
+<h2>SurveyResults</h2>
+
+@foreach (var item in Model)
+{
+    <p>@item.Name</p>
+}
+

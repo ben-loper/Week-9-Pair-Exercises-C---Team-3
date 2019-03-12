@@ -13,5 +13,11 @@ namespace Capstone.Web.Database
         ParkModel GetParkDetailsByCode(string parkCode);
 
         List<WeatherModel> GetWeatherForecast(string parkCode);
+
+        Dictionary<string, string> GetParksCodesAndNames();
+
+        int SaveSurvey(Survey survey);
+
+        List<SurveyResultsViewModel> GetTopSurveyResults();
     }
 }
