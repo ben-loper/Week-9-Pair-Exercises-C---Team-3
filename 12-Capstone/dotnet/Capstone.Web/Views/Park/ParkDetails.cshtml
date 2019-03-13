@@ -51,38 +51,12 @@
             <p class="temp">@Model.WeatherForecast[0].TempLow F</p>
         </div>
         <div class="weather-advice">
-            @if (Model.WeatherForecast[0].Forecast == "snow")
+           
+            @foreach(string advice in Model.WeatherForecast[0].WeatherAdvice)
             {
-                <p>Pack snowshoes!</p>
+                <p>@advice</p>
             }
-            else if (Model.WeatherForecast[0].Forecast == "rain")
-            {
-                <p>Pack rain gear and wear waterproof shoes!</p>
-            }
-            else if (Model.WeatherForecast[0].Forecast == "thunderstorms")
-            {
-                <p>Seek shelter and avoid hiking on exposed ridges!</p>
-            }
-            else if (Model.WeatherForecast[0].Forecast == "sun")
-            {
-                <p>Pack sunblock!</p>
-            }
-
-            @if (Model.WeatherForecast[0].TempHigh > 75)
-            {
-                <p>Bring an extra gallon of water!</p>
-            }
-
-            @if ((Model.WeatherForecast[0].TempHigh - Model.WeatherForecast[0].TempLow) > 20)
-            {
-                <p>Wear breathable layers!</p>
-            }
-
-            @if (Model.WeatherForecast[0].TempLow < 20)
-            {
-                <p>Exposure to these low temperatures is dangerous!</p>
-            }
-            </div>
+            
     </div>
 
     <div class="future-forecast">

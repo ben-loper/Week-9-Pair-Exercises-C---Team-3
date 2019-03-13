@@ -153,6 +153,8 @@ namespace Capstone.Web.Database
                     dayForecast.TempHigh = Convert.ToInt32(reader["high"]);
                     dayForecast.Forecast = Convert.ToString(reader["forecast"]);
 
+                    dayForecast.GenerateAdvice();
+
                     forecast.Add(dayForecast);
                 }
             }
