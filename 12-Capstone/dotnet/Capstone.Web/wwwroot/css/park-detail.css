@@ -34,7 +34,7 @@
 }
 
 
-.today-forecast p {
+.today-forecast > p {
     width: 40px;
 }
 
@@ -107,8 +107,8 @@
     width: 40px;
 }
 
-.weather-advice > p{
-    width: 100%;
+.weather-advice {
+    grid-area: weather-advice;
 }
 
 
