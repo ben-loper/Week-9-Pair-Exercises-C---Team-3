@@ -107,5 +107,9 @@
     width: 40px;
 }
 
+.weather-advice > p{
+    width: 100%;
+}
+
 
 
