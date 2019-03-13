@@ -6,10 +6,14 @@
 
 .survey-row {
     display: grid;
-    grid-template-columns: minmax(295px, 33%) 33% 20%;
+    grid-template-columns: minmax(295px, 33%) minmax(375px, 33%) 20%;
     border-bottom: 1px #efefef solid;
     padding-bottom: 20px;
     align-items: center;
+}
+
+.survey-row a:hover {
+    text-decoration: none;
 }
 
 .survey-row:last-child {

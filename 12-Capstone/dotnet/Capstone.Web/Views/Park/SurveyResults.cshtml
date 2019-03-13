@@ -14,9 +14,10 @@
     @foreach (var item in Model)
     {
     <div class="survey-row">
-        <img src="~/images/parks/@(item.ParkCode).jpg" />
-        <h4>@item.Name</h4>
-        <h4>Votes: <span class="votes-color">@item.NumOfVotes</span></h4>
+        <a asp-controller="Park" asp-action="ParkDetails" asp-route-ParkCode="@item.ParkCode"><img src="~/images/parks/@(item.ParkCode).jpg" /></a>
+        <a asp-controller="Park" asp-action="ParkDetails" asp-route-ParkCode="@item.ParkCode">
+            <h4>@item.Name</h4></a>
+            <h4>Votes: <span class="votes-color">@item.NumOfVotes</span></h4>
     </div>
     }
 
