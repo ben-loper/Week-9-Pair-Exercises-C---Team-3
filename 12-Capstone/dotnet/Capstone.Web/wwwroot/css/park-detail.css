@@ -34,7 +34,7 @@
 }
 
 
-.today-forecast > p {
+.low-temp-column > p, .high-temp-column > p{
     width: 40px;
 }
 
@@ -111,5 +111,12 @@
     grid-area: weather-advice;
 }
 
+.today-forecast ul {
+    margin-top: 10px;
+}
 
-
+.today-forecast ul li{
+    list-style-type: circle;
+    margin-bottom: 8px;
+    line-height: 17px;
+}
