@@ -4,14 +4,21 @@
     Survey Results
 }
 
-@{
-    ViewData["Title"] = "SurveyResults";
+@section StyleSheet {
+    <link rel="stylesheet" href="~/css/survey-result.css" />
 }
 
-<h2>SurveyResults</h2>
+<h2>Survey Results</h2>
 
-@foreach (var item in Model)
-{
-    <p>@item.Name</p>
-}
+<div class="result-section">
+    @foreach (var item in Model)
+    {
+    <div class="survey-row">
+        <img src="~/images/parks/@(item.ParkCode).jpg" />
+        <h4>@item.Name</h4>
+        <h4>Votes: <span class="votes-color">@item.NumOfVotes</span></h4>
+    </div>
+    }
+
+</div>
 

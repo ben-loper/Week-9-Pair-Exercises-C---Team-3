@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Capstone.Web.Models
         public Survey NewSurvey { get; set; }
 
         public Dictionary<string, string> ParkNameDict { get; set; }
-
+        
         public List<SelectListItem> Parks { get; set; } = new List<SelectListItem>();
 
         public void PopulateDropDown()
@@ -22,6 +23,7 @@ namespace Capstone.Web.Models
             }
         }
 
+        [Display(Name = "State of Residence")]
         public List<SelectListItem> States = new List<SelectListItem>()
         {
             new SelectListItem() {Text="Alabama", Value="AL"},
@@ -77,6 +79,7 @@ namespace Capstone.Web.Models
             new SelectListItem() { Text="Wyoming", Value="WY"}
         };
 
+        [Display(Name = "Activity Level")]
         public Dictionary<int, string> ActivityLevels = new Dictionary<int, string>()
         {
             { 0 , "Inactive"},

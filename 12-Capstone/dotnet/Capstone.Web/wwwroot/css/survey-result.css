@@ -1,0 +1,27 @@
+﻿.result-section {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 20px;
+}
+
+.survey-row {
+    display: grid;
+    grid-template-columns: minmax(295px, 33%) 33% 20%;
+    border-bottom: 1px #efefef solid;
+    padding-bottom: 20px;
+    align-items: center;
+}
+
+.survey-row:last-child {
+    border-bottom: none;
+}
+
+.survey-row img {
+    width: 250px;
+    border-radius: 5px;
+}
+
+.votes-color {
+    color: #337ab7;
+   
+}

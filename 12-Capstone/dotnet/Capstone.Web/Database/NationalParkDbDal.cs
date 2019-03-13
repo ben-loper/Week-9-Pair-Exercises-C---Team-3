@@ -106,7 +106,7 @@ namespace Capstone.Web.Database
         {
             List<SurveyResultsViewModel> parks = new List<SurveyResultsViewModel>();
 
-            string getParksSql = "SELECT COUNT(park.parkCode) AS numberOfVotes, parkName, parkDescription FROM park JOIN survey_result ON park.parkCode = survey_result.parkCode GROUP BY park.parkName, parkDescription ORDER BY numberOfVotes DESC, parkName; ";
+            string getParksSql = "SELECT COUNT(park.parkCode) AS numberOfVotes, park.parkCode, park.parkName, park.parkDescription FROM park JOIN survey_result ON park.parkCode = survey_result.parkCode GROUP BY park.parkName, park.parkDescription, park.parkCode ORDER BY numberOfVotes DESC, parkName, park.parkCode; ";
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -118,8 +118,10 @@ namespace Capstone.Web.Database
                 {
                     SurveyResultsViewModel park = new SurveyResultsViewModel();
 
+                    park.ParkCode = Convert.ToString(reader["parkCode"]);
                     park.Name = Convert.ToString(reader["parkName"]);
                     park.Description = Convert.ToString(reader["parkDescription"]);
+                    park.NumOfVotes = Convert.ToInt32(reader["numberOfVotes"]);
 
                     parks.Add(park);
                 }

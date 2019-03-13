@@ -1,0 +1,39 @@
+﻿h2 {
+    margin: 0 0 20px 170px;
+}
+
+.survey-form {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 20px;
+}
+
+.form-row{
+    display: grid;
+    grid-template-columns: 170px 80%;
+}
+
+.form-row .park-selector{
+    width: 270px;
+}
+
+.form-row .state-selector {
+    width: 160px;
+}
+
+.form-row .email-input {
+    width: 270px;
+}
+
+.form-row input[type="radio"]:first-child{
+    margin-left: 0;
+}
+
+.form-row input[type="radio"] {
+    margin-left: 20px;
+}
+
+.survey-form input[type="submit"] {
+    width: 75px;
+    margin-left: 170px;
+}

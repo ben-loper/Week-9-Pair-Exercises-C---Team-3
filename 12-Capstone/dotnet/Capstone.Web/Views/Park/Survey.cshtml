@@ -4,27 +4,40 @@
     New Survey
 }
 
+@section StyleSheet{
+    <link rel="stylesheet" href="~/css/survey.css" />
+}
+
 <h2>Survey</h2>
 
 
-<form asp-controller="Park" asp-action="Survey" method="post">
-    <div>
+<form asp-controller="Park" asp-action="Survey" method="post" class="survey-form">
+
+    <div class="form-row">
         <label asp-for="NewSurvey.ParkCode"></label>
-        <select asp-for="NewSurvey.ParkCode" asp-items="Model.Parks"></select>
+        <select asp-for="NewSurvey.ParkCode" asp-items="Model.Parks" class="park-selector"></select>
     </div>
-    <div>
+
+    <div class="form-row">
         <label asp-for="NewSurvey.EmailAddress"></label>
-        <input asp-for="NewSurvey.EmailAddress" placeholder=" john@smith.com">
+        <input asp-for="NewSurvey.EmailAddress" placeholder=" john@smith.com" class="email-input">
     </div>
-    <div>
+
+    <div class="form-row">
         <label asp-for="NewSurvey.StateOfResidence"></label>
-        <select asp-for="NewSurvey.StateOfResidence" asp-items="Model.States"></select>
+        <select asp-for="NewSurvey.StateOfResidence" asp-items="Model.States" class="state-selector"></select>
     </div>
-    <div>
-        @foreach (var item in Model.ActivityLevels)
-        {
-            <input asp-for="NewSurvey.ActivityLevel" type="radio" value="@item.Value" /> @item.Value
-        }
+
+    <div class="form-row">
+        <label asp-for="NewSurvey.ActivityLevel"></label>
+        <div>
+            @foreach (var item in Model.ActivityLevels)
+            {            
+                <input asp-for="NewSurvey.ActivityLevel" type="radio" value="@item.Value" /> @item.Value           
+            }
+        </div>
     </div>
+
+
     <input type="submit" />
 </form>
