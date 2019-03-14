@@ -136,12 +136,14 @@ namespace Capstone.Web.Database
             List<WeatherModel> forecast = new List<WeatherModel>();
 
             string getForecastSql = "SELECT fiveDayForecastValue, low, high," +
-                " forecast FROM weather WHERE parkCode = 'CVNP';";
+                " forecast FROM weather WHERE parkCode = @parkCode;";
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(getForecastSql, conn);
+
+                cmd.Parameters.AddWithValue("@parkCode", parkCode);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())

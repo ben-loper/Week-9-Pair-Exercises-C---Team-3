@@ -7,19 +7,17 @@ namespace Capstone.Web.Models
 {
     public class User
     {
-        public string DegreeUnits { get; set; } = "Fahrenheit";
-
-        public List<ParkModel> FavParks { get; set; } = new List<ParkModel>();
+        public string DegreeUnits { get; set; } = "F";
 
         public void ChangeUnitPreference()
         {
-            if (DegreeUnits == "Farenheit")
+            if (DegreeUnits == "F")
             {
-                DegreeUnits = "Celcius";
+                DegreeUnits = "C";
             }
             else
             {
-                DegreeUnits = "Farenheit";
+                DegreeUnits = "F";
             }
         }
     }

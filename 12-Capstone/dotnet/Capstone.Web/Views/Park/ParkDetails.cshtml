@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/css/park-detail.css" />
 }
 
+
+
 <div class="park-details-page">
 
     <div class="park-img-tile">
@@ -40,15 +42,20 @@
     <div class="today-forecast">
         <div class="img-and-title">
             <h3>Today</h3>
+            
+      <form asp-controller="Park" asp-action="SetPreference" method="post">
+        <input type="submit" value="Change Units" />
+      </form> 
+
             <img src="~/images/weather/@(Model.WeatherForecast[0].Forecast).png" />
         </div>
         <div class="high-temp-column">
             <h4>High</h4>
-            <p class="temp">@Model.WeatherForecast[0].TempHigh F</p>
+            <p class="temp">@(Model.WeatherForecast[0].TempHigh)&#176;@Model.CurrentUser.DegreeUnits</p>
         </div>
         <div class="low-temp-column">
             <h4>Low</h4>
-            <p class="temp">@Model.WeatherForecast[0].TempLow F</p>
+            <p class="temp">@(Model.WeatherForecast[0].TempLow)&#176;@Model.CurrentUser.DegreeUnits</p>
         </div>
         <div class="weather-advice">
             <ul>
@@ -68,11 +75,11 @@
                 <img src="~/images/weather/@(Model.WeatherForecast[i].Forecast).png" class="weather-img" />
                 <div class="future-high-temp-forecast">
                     <h4>High</h4>
-                    <p class="temp">@Model.WeatherForecast[i].TempHigh F</p>
+                    <p class="temp">@(Model.WeatherForecast[i].TempHigh)&#176;@Model.CurrentUser.DegreeUnits</p>
                 </div>
                 <div class="future-low-temp-forecast">
                     <h4>Low</h4>
-                    <p class="temp">@Model.WeatherForecast[i].TempLow F</p>
+                    <p class="temp">@(Model.WeatherForecast[i].TempLow)&#176;@Model.CurrentUser.DegreeUnits</p>
                 </div>
             </div>
             

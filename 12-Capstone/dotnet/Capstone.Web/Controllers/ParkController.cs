@@ -18,7 +18,8 @@ namespace Capstone.Web.Controllers
         }
 
         public IActionResult Index()
-        {           
+        {
+            User user = GetActiveUser();
             List<IndexViewParkModel> parks = _nationParkDal.GetParks();
 
             return View(parks);
@@ -27,18 +28,45 @@ namespace Capstone.Web.Controllers
         public IActionResult ParkDetails(string parkCode)
         {
             ParkDetailViewModel model = new ParkDetailViewModel();
+
+            if(TempData["ParkCode"] != null && TempData["ParkCode"].ToString() != parkCode)
+            {
+                if(parkCode == null)
+                {
+                    parkCode = TempData["ParkCode"].ToString();
+                }
+                else
+                {
+                    TempData["ParkCode"] = parkCode;
+                }                
+            }
+            
+            TempData["ParkCode"] = parkCode;
+            
+          
             model.Park = _nationParkDal.GetParkDetailsByCode(parkCode);
             model.WeatherForecast = _nationParkDal.GetWeatherForecast(parkCode);
-            
+            model.CurrentUser = GetActiveUser();
+
+            if(model.CurrentUser.DegreeUnits.ToLower() == "c")
+            {
+                model.ConvertToCelcius();
+            }
 
             return View(model);
         }
 
-        public IActionResult SetPreference(ParkDetailViewModel model)
+        public IActionResult SetPreference()
         {
-            
+            User user = GetActiveUser();
 
-            return View("ParkDetails", model);
+            user.ChangeUnitPreference();
+
+            SaveActiveUser(user);
+
+            //TempData["ParkCode"] = TempData["ParkCode"];
+
+            return RedirectToAction("ParkDetails");
         }
 
         [HttpGet]
